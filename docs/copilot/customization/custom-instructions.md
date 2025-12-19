@@ -1,6 +1,6 @@
 ---
 ContentId: 8b4f3c21-4e02-4a89-9f15-7a8d6b5c2e91
-DateApproved: 11/12/2025
+DateApproved: 12/10/2025
 MetaDescription: Learn how to create custom instructions for GitHub Copilot Chat in VS Code to ensure AI responses match your coding practices, project requirements, and development standards.
 MetaSocialImage: ../images/shared/github-copilot-social.png
 ---
@@ -291,6 +291,7 @@ To sync your user instructions files, enable Settings Sync for prompt and instru
 ## Related resources
 
 * [Customize AI responses overview](/docs/copilot/customization/overview.md)
+* [Use Agent Skills](/docs/copilot/customization/agent-skills.md)
 * [Create reusable prompt files](/docs/copilot/customization/prompt-files.md)
 * [Create custom agents](/docs/copilot/customization/custom-agents.md)
 * [Get started with chat in VS Code](/docs/copilot/chat/copilot-chat.md)
