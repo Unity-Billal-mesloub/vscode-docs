@@ -25,13 +25,13 @@ To successfully complete this tutorial, you must do the following:
 
 1. Install the Microsoft Visual C++ (MSVC) compiler toolset.
 
-   If you have a recent version of Visual Studio, open the Visual Studio Installer from the Windows Start menu and verify that the C++ workload is checked. If it's not installed, then check the box and select the **Modify** button in the installer.
+   If you have a recent version of Visual Studio, open the Visual Studio Installer from the Windows Start menu and verify that the C++ workload is checked. Verify also that the MSVC build tools and a Windows SDK are selected. If any of those components are not installed, check the appropriate boxes and select the **Modify** button in the installer.
 
-   You can also install the **Desktop development with C++** workload without a full Visual Studio IDE installation. From the Visual Studio [Downloads](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2022) page, scroll down until you see **Tools for Visual Studio** under the **All Downloads** section and select the download for **Build Tools for Visual Studio 2022**.
+   You can also install the **Desktop development with C++** workload without a full Visual Studio IDE installation. From the Visual Studio [Downloads](https://visualstudio.microsoft.com/downloads/#remote-tools-for-visual-studio-2026) page, scroll down until you see **Tools for Visual Studio** under the **All Downloads** section and select the download for **Build Tools for Visual Studio 2026**.
 
    ![Build Tools for Visual Studio download](images/msvc/build-tools-for-vs-2022.png)
 
-   This will launch the Visual Studio Installer, which will bring up a dialog showing the available Visual Studio Build Tools workloads. Check the **Desktop development with C++** workload and select **Install**.
+   This will launch the Visual Studio Installer, which will bring up a dialog showing the available Visual Studio Build Tools workloads. Check the **Desktop development with C++** workload, ensure that the MSVC build tools and a Windows SDK are selected, then select **Install**.
 
    ![Cpp build tools workload](images/msvc/desktop_development_with_cpp-2022.png)
 
@@ -106,7 +106,7 @@ Now press `kb(workbench.action.files.save)` to save the file. Notice how the fil
 
 You can also enable [Auto Save](/docs/editing/codebasics.md#save-auto-save) to automatically save your file changes, by checking **Auto Save** in the main **File** menu.
 
-The Activity Bar on the far left lets you open different views such as **Search**, **Source Control**, and **Run**. You'll look at the **Run** view later in this tutorial. You can find out more about the other views in the VS Code [User Interface documentation](/docs/getstarted/userinterface.md).
+The Activity Bar on the far left lets you open different views such as **Search**, **Source Control**, and **Run**. You'll look at the **Run** view later in this tutorial. You can find out more about the other views in the VS Code [User Interface documentation](/docs/editing/userinterface.md).
 
 >**Note**: When you save or open a C++ file, you may see a notification from the C/C++ extension about the availability of an Insiders version, which lets you test new features and fixes. You can ignore this notification by selecting the `X` (**Clear Notification**).
 
@@ -349,7 +349,7 @@ Visual Studio Code places these settings in `.vscode\c_cpp_properties.json`. If 
             "_UNICODE"
         ],
         "windowsSdkVersion": "10.0.18362.0",
-        "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.24.28314/bin/Hostx64/x64/cl.exe",
+        "compilerPath": "C:/Program Files/Microsoft Visual Studio/2026/BuildTools/VC/Tools/MSVC/14.51/bin/Hostx64/x64/cl.exe",
         "cStandard": "c11",
         "cppStandard": "c++17",
         "intelliSenseMode": "msvc-x64"
@@ -373,7 +373,7 @@ The `compilerPath` search order is:
 - Then look for g++ on Windows Subsystem for Linux (WSL)
 - Then g++ for Mingw-w64.
 
-If you have g++ or WSL installed, you might need to change `compilerPath` to match the preferred compiler for your project. For Microsoft C++, the path should look something like this, depending on which specific version you have installed: "C:/Program Files (x86)/Microsoft Visual Studio/2017/BuildTools/VC/Tools/MSVC/14.16.27023/bin/Hostx64/x64/cl.exe".
+If you have g++ or WSL installed, you might need to change `compilerPath` to match the preferred compiler for your project. For Microsoft C++, the path should look something like this, depending on which specific version you have installed: "C:/Program Files/Microsoft Visual Studio/2026/BuildTools/VC/Tools/MSVC/14.51/bin/Hostx64/x64/cl.exe".
 
 ## Reusing your C++ configuration
 
@@ -393,7 +393,7 @@ In certain circumstances, it isn't possible to run VS Code from **Developer Comm
                 "args": [
                     "/C",
                     // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
-                    "\"C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/Tools/VsDevCmd.bat\"",
+                    "\"C:/Program Files/Microsoft Visual Studio/2026/Community/Common7/Tools/VsDevCmd.bat\"",
                     "&&"
                 ]
             }

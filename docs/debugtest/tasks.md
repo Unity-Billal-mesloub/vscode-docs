@@ -1,6 +1,6 @@
 ---
 ContentId: F5EA1A52-1EF2-4127-ABA6-6CEF5447C608
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Expand your development workflow with task integration in Visual Studio Code.
 ---
 # Integrate with External Tools via Tasks
@@ -114,7 +114,7 @@ Task auto detection can be disabled using the following settings:
 
 ```json
 {
-    "typescript.tsc.autoDetect": "off",
+    "js/ts.tsc.autoDetect": "off",
     "grunt.autoDetect": "off",
     "jake.autoDetect": "off",
     "gulp.autoDetect": "off",
@@ -371,8 +371,35 @@ You can specify a task's run behaviors using the `runOptions` property:
 * **reevaluateOnRerun**: Controls how variables are evaluated when a task is executed through the **Rerun Last Task** command. The default is `true`, meaning that variables will be reevaluated when a task is rerun. When set to `false` the resolved variable values from the previous run of the task will be used.
 * **runOn**: Specifies when a task is run.
   * `default` - The task will only be run when executed through the **Run Task** command.
-  * `folderOpen` - The task will be run when the containing folder is opened. The first time you open a folder that contains a task with `folderOpen`, you will be asked if you want to allow tasks to run automatically in that folder. You can change your decision later using the **Manage Automatic Tasks** command and selecting between **Allow Automatic Tasks** and **Disallow Automatic Tasks**.
-* **instanceLimit** - The number of instances of the task that are allowed to run simultaneously. The default value is `1`.
+  * `folderOpen`: The task will be run when the containing folder is opened. See also how you can [control automatic task execution](#control-automatic-task-execution).
+
+* **instanceLimit**: The number of instances of the task that are allowed to run simultaneously. The default value is `1`.
+
+* **instancePolicy**: Determines what happens when a task has reached its `instanceLimit`. Can be set to:
+  * `prompt` - Prompt the user which instance to terminate (default).
+  * `silent` - Don't start a new instance (silent).
+  * `terminateNewest` - Terminate the newest running instance.
+  * `terminateOldest` - Terminate the oldest running instance.
+  * `warn` - Don't start a new instance (show warning).
+
+### Control automatic task execution
+
+The `setting(task.allowAutomaticTasks)` setting controls whether tasks with `"runOn": "folderOpen"` are allowed to run automatically when you open a workspace. Automatic tasks never run in an [untrusted workspace](/docs/editing/workspaces/workspace-trust.md), regardless of this setting.
+
+The setting accepts two values:
+
+* **off** (default): Don't run automatic tasks. If you haven't yet made a choice for the current workspace, you are prompted once to **Allow** or **Disallow** automatic tasks. If you select **Disallow** (or set the value to `off` explicitly), tasks won't run and you aren't prompted again.
+* **on**: Always run automatic tasks when opening a trusted workspace, without prompting.
+
+To configure the setting, add it to your user or workspace settings:
+
+```json
+{
+    "task.allowAutomaticTasks": "off"
+}
+```
+
+You can also change your choice at any time using the **Tasks: Manage Automatic Tasks** command from the Command Palette, and selecting between **Allow Automatic Tasks** and **Disallow Automatic Tasks** for the current workspace.
 
 ## Customizing auto-detected tasks
 
@@ -606,7 +633,7 @@ To highlight the power of tasks, here are a few examples of how VS Code can use 
 
 ### Transpiling TypeScript to JavaScript
 
-The [TypeScript topic](/docs/typescript/typescript-compiling.md) includes an example that creates a task to transpile TypeScript to JavaScript and observe any related errors from within VS Code.
+The [TypeScript topic](/docs/typescript/typescript-transpiling.md) includes an example that creates a task to transpile TypeScript to JavaScript and observe any related errors from within VS Code.
 
 ### Transpiling Less and SCSS into CSS
 
@@ -721,6 +748,18 @@ test.js
 Our problem matcher is line-based so we need to capture the file name (test.js) with a different regular expression than the actual problem location and message (1:0   error  Missing "use strict" statement).
 
 To do this, use an array of problem patterns for the `pattern` property. This way you define a pattern per each line you want to match.
+
+> **Note:** In a multi-line problem matcher, the pattern array must match every consecutive line of output, starting from the first pattern. You cannot skip intermediate lines, even if they contain no useful information.
+
+If your tool outputs three lines and you only need data from the first and third, your pattern array still needs three entries. Use `{"regexp": "^.*$"}` with no capture group assignments for lines you don't need data from:
+
+```json
+"pattern": [
+    { "regexp": "^Error:\\s+(.*)$", "message": 1 },
+    { "regexp": "^.*$" },
+    { "regexp": "^\\s+at\\s+(.*):(\\d+)$", "file": 1, "line": 2 }
+]
+```
 
 The following problem pattern matches the output from ESLint in stylish mode - but still has one small issue that we need to resolve next. The code below has a first regular expression to capture the file name and the second to capture the line, column, severity, message, and error code:
 

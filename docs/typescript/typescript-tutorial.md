@@ -1,6 +1,6 @@
 ---
 ContentId: cb4f3742-733c-49d8-96db-d4bf8403bf64
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: TypeScript tutorial with Visual Studio Code.
 MetaSocialImage: ../languages/images/typescript/typescript-social.png
 ---
@@ -10,7 +10,7 @@ MetaSocialImage: ../languages/images/typescript/typescript-social.png
 
 ## Install the TypeScript compiler
 
-Visual Studio Code includes TypeScript language support but does not include the TypeScript compiler, `tsc`. You will need to install the TypeScript compiler either globally or in your workspace to transpile TypeScript source code to JavaScript (`tsc HelloWorld.ts`).
+Visual Studio Code includes TypeScript language support but does not include the TypeScript compiler, `tsc`. You will need to install the TypeScript compiler either globally or in your workspace to transpile TypeScript source code to JavaScript (`tsc helloworld.ts`).
 
 The easiest way to install TypeScript is through npm, the [Node.js Package Manager](https://www.npmjs.com/). If you have npm installed, you can install TypeScript globally (`-g`) on your computer by:
 
@@ -109,7 +109,7 @@ Having the generated JavaScript file in the same folder as the TypeScript source
 
 Delete `helloworld.js` and run the command `tsc` with no options. You will see that `helloworld.js` is now placed in the `out` directory.
 
-See [Compiling TypeScript](/docs/typescript/typescript-compiling.md) to learn about other features of the TypeScript language service and how to use tasks to run your builds directly from VS Code.
+See [Transpiling TypeScript](/docs/typescript/typescript-transpiling.md) to learn about other features of the TypeScript language service and how to use tasks to run your builds directly from VS Code.
 
 ## Error checking
 
@@ -162,7 +162,7 @@ See [Debugging TypeScript](/docs/typescript/typescript-debugging.md) to learn mo
 
 This tutorial was a quick introduction to using VS Code for TypeScript development. Read on to learn more about using VS Code's compiling and debugging support for TypeScript:
 
-* [Compiling TypeScript](/docs/typescript/typescript-compiling.md) - Use VS Code's powerful task system for compiling TypeScript.
+* [Transpiling TypeScript](/docs/typescript/typescript-transpiling.md) - Use VS Code's powerful task system for compiling TypeScript.
 * [Editing TypeScript](/docs/typescript/typescript-editing.md) - Specific editing features for TypeScript.
 * [Refactoring TypeScript](/docs/typescript/typescript-refactoring.md) - Useful refactorings from the TypeScript language service.
 * [Debugging TypeScript](/docs/typescript/typescript-debugging.md) - Configure the debugger for your TypeScript project.

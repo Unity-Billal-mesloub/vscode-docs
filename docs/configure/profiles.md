@@ -1,6 +1,6 @@
 ---
 ContentId: a65efc48-5a2d-4c7d-bd23-03f0393b53f6
-DateApproved: 12/10/2025
+DateApproved: 02/04/2026
 MetaDescription: Expand your development workflow with task integration in Visual Studio Code.
 ---
 # Profiles in Visual Studio Code
@@ -9,7 +9,7 @@ Visual Studio Code has hundreds of [settings](/docs/configure/settings.md), thou
 
 ## Access the Profiles editor
 
-The **Profiles editor** enables you to create and manage your profiles in VS Code from a single place.
+The **Profiles editor** enables you to create and manage your profiles in VS Code from a single place. The Profiles editor opens by default in a [modal overlay](/docs/editing/userinterface.md#modal-editors) on top of the editor area.
 
 ![Screenshot that shows the Profiles editor.](images/profiles/profiles-editor.png)
 
@@ -161,7 +161,7 @@ You can import an existing profile from the **Profiles editor** by selecting the
 
 ![Import profile from the Profiles editor](images/profiles/profiles-editor-import-profile.png)
 
-When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Once you have selected the profile, the [Profile creation form](#create-a-profile) opens with the profile to import pre-selected. You can continue to modify the profile and select **Create** to import the profile.
+When you select **Import Profile...**, you are prompted for the URL of a GitHub gist or the file location of a profile via an **Import Profile** dialog. Once you have selected the profile, the [Profile creation form](#create-a-profile) opens with the profile to import preselected. You can continue to modify the profile and select **Create** to import the profile.
 
 ## Uses for profiles
 
@@ -210,7 +210,7 @@ This profile also sets the following settings:
 The Data Science profile is a good starting point for all data and notebook work. It comes with specific snippets and has the following extensions:
 
 * [Data Wrangler](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler) - Data viewing, cleaning and preparation for tabular datasets and Excel/CSV/Parquet files.
-* [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) - Your AI pair programmer.
+* [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) - AI-powered coding tools and agents.
 * [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) - Use Jupyter notebooks within VS Code.
 * [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python) - IntelliSense, environment management, debugging, refactoring.
 * [Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) extension pack - Supports SSH, WSL, and Dev Containers.

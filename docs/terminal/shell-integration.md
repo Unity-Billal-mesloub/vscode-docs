@@ -1,6 +1,6 @@
 ---
 ContentId: a6a1652b-c0d8-4054-a2da-feb915eef2cc
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Visual Studio Code's embedded terminal can integrate with some shells to enhance the capabilities of the terminal.
 ---
 # Terminal Shell Integration
@@ -21,6 +21,14 @@ By default, the shell integration script should automatically activate on suppor
 This standard, easy way will not work for some advanced use cases like in sub-shells, through a regular `ssh` session (when not using the [Remote - SSH extension](/docs/remote/ssh.md)) or for some complex shell setups. The recommended way to enable shell integration for those is [manual installation](#manual-installation).
 
 >**Note**: Automatic injection may not work on old versions of the shell, for example older versions of fish do not support the `$XDG_DATA_DIRS` environment variable which is how injection works. You may still be able to manually install to get it working.
+
+>**Windows Note**: VS Code shell integration requires the [permission to run PowerShell scripts](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_execution_policies). If you have exclusive use of your user account on your machine, consider running:
+>
+> ```powershell
+> if ((Get-ExecutionPolicy -Scope LocalMachine) -eq 'Undefined' -and (Get-ExecutionPolicy -Scope CurrentUser) -eq 'Undefined') {
+>     Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+> }
+> ```
 
 ### Manual installation
 
@@ -97,7 +105,10 @@ IntelliSense in the terminal enables you to receive suggestions for files, folde
 
 ![Screenshot of the terminal showing a user has typed git checkout and receives suggestions for the branch name.](images/shell-integration/terminal-suggest.png)
 
-As you type, a list of suggestions will appear. To manually trigger the suggestions, use the `kb(workbench.action.terminal.requestCompletions)` keyboard shortcut.
+As you type, a list of suggestions will appear. To manually trigger the suggestions, use the `kb(workbench.action.terminal.triggerSuggest)` keyboard shortcut.
+
+> [!TIP]
+> `kbstyle(Ctrl+Space)` may be the keybinding to trigger your Input Method Editor (IME) at the OS level. If so, you can rebind the `workbench.action.terminal.triggerSuggest` command with a custom [keybinding](/docs/configure/keybindings.md#keyboard-shortcuts-editor) or change the OS-level shortcut.
 
 By default, `kbstyle(Tab)` inserts the suggestion. Once you navigate the list, `kbstyle(Enter)` inserts the suggestion. You can configure this behavior with the `setting(terminal.integrated.suggest.selectionMode)` setting.
 
@@ -247,7 +258,7 @@ These sequences should be ignored by other terminals, but unless other terminals
 - `OSC 633 ; B ST`: Mark prompt end.
 - `OSC 633 ; C ST`: Mark pre-execution.
 - `OSC 633 ; D [; <exitcode>] ST`: Mark execution finished with an optional exit code.
-- `OSC 633 ; E ; <commandline> [; <nonce] ST`: Explicitly set the command line with an optional nonce.
+- `OSC 633 ; E ; <commandline> [; <nonce>] ST`: Explicitly set the command line with an optional nonce.
 
   The E sequence allows the terminal to reliably get the exact command line interpreted by the shell. When this is not specified, the terminal may fallback to using the A, B and C sequences to get the command, or disable the detection all together if it's unreliable.
 
@@ -285,7 +296,7 @@ VS Code supports Final Term's shell integration sequences, which allow non-VS Co
 
 The following sequences that iTerm2 pioneered are supported:
 
-- `OSC 1337 ; CurrentDir=<Cwd> S`: Sets the current working directory of the terminal, similar to `OSC 633 ; P ; Cwd=<Cwd> ST`.
+- `OSC 1337 ; CurrentDir=<Cwd> ST`: Sets the current working directory of the terminal, similar to `OSC 633 ; P ; Cwd=<Cwd> ST`.
 - `OSC 1337 ; SetMark ST`: Adds a mark to the left of the line it was triggered on and also adds an annotation to the scroll bar:
 
     ![When the sequence is written to the terminal a small grey circle will appear to the left of the command, with a matching annotation in the scroll bar](images/shell-integration/setmark.png)

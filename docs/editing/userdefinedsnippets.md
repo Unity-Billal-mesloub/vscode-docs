@@ -1,6 +1,6 @@
 ---
 ContentId: 79CD9B45-97FF-48B1-8DD5-2555F56206A6
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: It is easy to add code snippets to Visual Studio Code both for your own use or to share with others on the public Extension Marketplace. TextMate .tmSnippets files are supported.
 ---
 # Snippets in Visual Studio Code
@@ -68,7 +68,7 @@ Additionally, the `body` of the example above has three placeholders (listed in 
 
 ### File template snippets
 
-You can add the `isFileTemplate` attribute to your snippet's definition if the snippet is intended to populate or replace a file's contents. File template snippets are displayed in a dropdown when you run the **Snippets: Populate File from Snippet** command in a new or existing file.
+You can add the `isFileTemplate` attribute to your snippet's definition if the snippet is intended to populate or replace a file's contents. File template snippets are displayed in a dropdown when you run the **Snippets: Fill File with Snippet** command in a new or existing file.
 
 ## Snippet scope
 
@@ -92,7 +92,84 @@ Most user-defined snippets are scoped to a single language, and so are defined i
 
 ### Project snippet scope
 
-You can also have a global snippets file (JSON with file suffix `.code-snippets`) scoped to your project. Project-folder snippets are created with the **New Snippets file for '<folder-name>'...** option in the **Snippets: Configure Snippets** dropdown menu and are located at the root of the project in a `.vscode` folder. Project snippet files are useful for sharing snippets with all users working in that project. Project-folder snippets are similar to global snippets and can be scoped to specific languages through the `scope` property.
+You can also have a global snippets file (JSON with file suffix `.code-snippets`) scoped to your project. Project-folder snippets are created with the **New Snippets file for '\<folder-name\>'...** option in the **Snippets: Configure Snippets** dropdown menu and are located at the root of the project in a `.vscode` folder. Project snippet files are useful for sharing snippets with all users working in that project. Project-folder snippets are similar to global snippets and can be scoped to specific languages through the `scope` property.
+
+### File pattern scope
+
+You can further control when snippets appear by using the optional `include` and `exclude` properties to specify file patterns. These properties work with both language-specific and global snippet files, and can be combined with the `scope` property for more precise control over snippet suggestions.
+
+* `include` - A glob pattern or array of glob patterns that specifies which files the snippet should appear in.
+* `exclude` - A glob pattern or array of glob patterns that specifies which files the snippet should not appear in.
+
+Pattern matching works as follows:
+
+* **Filename-only patterns** (for example, `*.test.ts`) match based on the filename, regardless of the file's location in your project.
+* **Path-based patterns** (for example, `**/*.test.ts` or `**/dist/**`) match against the full file path.
+* If a file matches both `include` and `exclude` patterns, the `exclude` pattern takes precedence.
+* If neither property is specified, the snippet appears in all applicable files based on the `scope` property.
+
+<details>
+<summary>Examples</summary>
+
+**Example: Test snippets**
+
+This snippet only appears in TypeScript test files:
+
+```json
+{
+  "Test Block": {
+    "prefix": "test",
+    "body": [
+      "test('${1:description}', () => {",
+      "\t${0}",
+      "});"
+    ],
+    "description": "Insert a test block",
+    "scope": "typescript",
+    "include": ["**/*.test.ts", "**/*.spec.ts"]
+  }
+}
+```
+
+**Example: Excluding directories**
+
+This snippet appears in all JavaScript files except those in `dist` or `node_modules` directories:
+
+```json
+{
+  "Console Log": {
+    "prefix": "log",
+    "body": "console.log(${0});",
+    "description": "Insert console.log",
+    "scope": "javascript",
+    "exclude": ["**/dist/**", "**/node_modules/**"]
+  }
+}
+```
+
+**Example: Configuration file snippet**
+
+This snippet only appears in `travis.yml` files, using a filename-only pattern:
+
+```json
+{
+  "Travis CI Node": {
+    "prefix": "travis-node",
+    "body": [
+      "language: node_js",
+      "node_js:",
+      "  - ${1:18}"
+    ],
+    "description": "Travis CI Node.js configuration",
+    "scope": "yaml",
+    "include": ["travis.yml"]
+  }
+}
+```
+
+</details>
+
+Using `include` and `exclude` patterns helps reduce clutter in IntelliSense by showing snippets only where they are relevant.
 
 ## Snippet syntax
 
@@ -145,8 +222,11 @@ For inserting the current date and time:
 * `CURRENT_HOUR` The current hour in 24-hour clock format
 * `CURRENT_MINUTE` The current minute as two digits
 * `CURRENT_SECOND` The current second as two digits
+* `CURRENT_MILLISECOND` The current millisecond as three digits (example `078`)
 * `CURRENT_SECONDS_UNIX` The number of seconds since the Unix epoch
+* `CURRENT_MILLISECONDS_UNIX` The number of milliseconds since the Unix epoch
 * `CURRENT_TIMEZONE_OFFSET` The current UTC time zone offset as `+HH:MM` or `-HH:MM` (example `-07:00`).
+* `CURRENT_TIMEZONE_NAME` The IANA name of the current time zone (example `America/Los_Angeles`)
 
 For inserting random values:
 
@@ -230,7 +310,7 @@ variable    ::= '$' var | '${' var '}'
                 | '${' var transform '}'
 transform   ::= '/' regex '/' (format | text)+ '/' options
 format      ::= '$' int | '${' int '}'
-                | '${' int ':' '/upcase' | '/downcase' | '/capitalize' | '/camelcase' | '/pascalcase' '}'
+                | '${' int ':' '/upcase' | '/downcase' | '/capitalize' | '/camelcase' | '/pascalcase' | '/snakecase' | '/kebabcase' '}'
                 | '${' int ':+' if '}'
                 | '${' int ':?' if ':' else '}'
                 | '${' int ':-' else '}' | '${' int ':' else '}'

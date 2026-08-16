@@ -57,12 +57,12 @@ You can edit the `c_cpp_properties.json` file directly to customize your configu
 
 Use the `compilerPath` variable to add a compiler. This variable is the full path of the compiler you're using to build your project. For example, when using the default install path for GCC on Linux, the compiler path is `/usr/bin/gcc`.
 
-For more information about the `c_cpp_properties.json` file, review the [schema reference](/docs/cpp/c-cpp-properties-schema-reference.md).
+For more information about the `c_cpp_properties.json` file, review the [schema reference](/docs/cpp/customize-cpp-settings.md).
 
-Select the sample below based on your operating system for a `c_cpp_configuration.json` file:
+Select the sample below based on your operating system for a `c_cpp_properties.json` file:
 
 <details>
-<summary><b>> Sample c_cpp_configuration.json on Windows</b></summary>
+<summary><b>> Sample c_cpp_properties.json on Windows</b></summary>
 <br>
 
 Using the default install path for MinGW:
@@ -94,7 +94,7 @@ Using the default install path for MinGW:
 </details>
 <br>
 <details>
-<summary><b>> Sample c_cpp_configuration.json on macOS</b></summary>
+<summary><b>> Sample c_cpp_properties.json on macOS</b></summary>
 <br>
 Using the default install path for Clang:
 
@@ -123,7 +123,7 @@ Using the default install path for Clang:
 </details>
 <br>
 <details>
-<summary><b>> Sample c_cpp_configuration.json on Linux</b></summary>
+<summary><b>> Sample c_cpp_properties.json on Linux</b></summary>
 <br>
 Using the default install path for GCC:
 
@@ -199,7 +199,7 @@ You can select the pin icon on the right of any item in the language status bar 
 
 ## Next steps
 
-* For more information about IntelliSense configuration, see [Customizing default settings](/docs/cpp/customize-default-settings-cpp.md).
+* For more information about IntelliSense configuration, see [Customizing default settings](/docs/cpp/customize-cpp-settings.md).
 * If you have trouble configuring the settings, please start a discussion at [GitHub discussions](https://github.com/microsoft/vscode-cpptools/discussions), or if you find an issue that needs to be fixed, file an issue at [GitHub issues](https://github.com/microsoft/vscode-cpptools/issues).
-* Explore the [c_cpp_properties schema](/docs/cpp/c-cpp-properties-schema-reference.md).
+* Explore the [c_cpp_properties schema](/docs/cpp/customize-cpp-settings.md).
 * Review the [Overview of the C++ extension](/docs/languages/cpp.md).

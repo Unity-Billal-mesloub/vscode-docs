@@ -1,11 +1,14 @@
 ---
 ContentId: 7B4DC928-2414-4FC7-9C76-E4A13D6675FE
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Visual Studio Code has an integrated terminal to enable working in your shell of choice without leaving the editor.
 ---
 # Terminal Basics
 
 Visual Studio Code includes a full featured integrated terminal that starts at the root of your workspace. It provides integration with the editor to support features like [links](#links) and [error detection](/docs/debugtest/tasks.md). The integrated terminal can run commands such as mkdir and git just like a standalone terminal.
+
+> [!NOTE]
+> Opening a terminal is blocked when a workspace is in [Restricted Mode](/docs/editing/workspaces/workspace-trust.md#terminal) to prevent shells from automatically executing code based on workspace contents.
 
 You can open a terminal as follows:
 
@@ -48,8 +51,8 @@ Icons may appear to the right of the terminal title on the tab label when a term
 
 Place multiple terminals side-by-side and create a group by splitting a terminal:
 
-* Hover over a entry in the list of terminals on the right and select the inline split button.
-* Right-click the context menu and selecting the **Split** menu option.
+* Hover over an entry in the list of terminals on the right and select the inline split button.
+* Right-click the context menu and select the **Split** menu option.
 * `kbstyle(Alt)` and click on a tab, the **+** button, or the single tab on the terminal panel.
 * Trigger the `kb(workbench.action.terminal.split)` command.
 
@@ -327,7 +330,7 @@ You can also right-click on a terminal tab and select **Toggle Size to Content W
 
 ## GitHub Copilot in the terminal
 
-If you have access to [GitHub Copilot](/docs/copilot/setup.md), you can use it to get AI-powered help with terminal commands and shell scripting. There are several ways to use Copilot with the terminal:
+If you have access to [GitHub Copilot](/docs/setup/copilot.md), you can use it to get AI-powered help with terminal commands and shell scripting. There are several ways to use Copilot with the terminal:
 
 ### Terminal inline chat
 
@@ -344,11 +347,11 @@ Start an inline chat directly in the terminal to get help with shell commands:
 
 When Copilot provides a response, you can select **Run** to execute the command directly or **Insert** to add it to the terminal for further editing.
 
-For more information about using GitHub Copilot with the terminal, see [Use terminal inline chat](/docs/copilot/chat/inline-chat.md#use-terminal-inline-chat).
+For more information about using GitHub Copilot with the terminal, see [Use terminal inline chat](/docs/chat/inline-chat.md#use-terminal-inline-chat).
 
 ### Terminal chat participant
 
-Use the dedicated `@terminal` chat participant in ask mode in the Chat view:
+Use the dedicated `@terminal` chat participant in chat to ask questions about terminal commands, shell scripting, or explaining terminal output:
 
 1. Open the Chat view (`kb(workbench.action.chat.open)`)
 2. Start your question with `@terminal` to direct it to the terminal participant
@@ -371,7 +374,7 @@ You can include terminal information as context in your chat prompts:
 
 The basics of the terminal have been covered in this document. Read on to find out more about:
 
-* [Terminal inline chat](/docs/copilot/chat/inline-chat.md#use-terminal-inline-chat) - AI-powered suggestions right in your terminal.
+* [Terminal inline chat](/docs/chat/inline-chat.md#use-terminal-inline-chat) - AI-powered suggestions right in your terminal.
 * [Tasks](/docs/debugtest/tasks.md) - Tasks let you integrate with external tools and leverage the terminal heavily.
 * [Mastering VS Code's Terminal](https://www.growingwiththeweb.com/2017/03/mastering-vscodes-terminal.html) - An external blog with plenty of power user tips for the terminal.
 * Explore terminal commands by browsing the keyboard shortcuts within VS Code (**Preferences: Open Keyboard Shortcuts** then search on 'terminal').

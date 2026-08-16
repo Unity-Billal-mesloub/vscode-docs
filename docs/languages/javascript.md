@@ -1,6 +1,6 @@
 ---
 ContentId: F54BB3D4-76FB-4547-A9D0-F725CEBB905C
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Get the best out of Visual Studio Code for JavaScript development
 ---
 # JavaScript in Visual Studio Code
@@ -74,11 +74,7 @@ VS Code understands many standard [JSDoc](https://jsdoc.app) annotations, and us
 
 Quickly create JSDoc comments for functions by typing `/**` before the function declaration, and select the **JSDoc comment** snippet suggestion:
 
-<video src="images/javascript/jsdoc-autofill.mp4" placeholder="images/javascript/jsdoc-autofill-placeholder.png" autoplay loop controls muted>
-    Sorry, your browser doesn't support HTML 5 video.
-</video>
-
-To disable JSDoc comment suggestions, set `"javascript.suggest.completeJSDocs": false`.
+To disable JSDoc comment suggestions, disable the `setting(js/ts.suggest.jsdoc.enabled)` setting.
 
 ## Hover Information
 
@@ -110,10 +106,10 @@ In this example, VS Code adds an import for `Button` from [material-ui](https://
 
 ![After selecting a symbol from a different file, an import is added for it automatically](images/javascript/auto-import-after.png)
 
-To disable auto imports, set `"javascript.suggest.autoImports"` to `false`.
+To disable auto imports, set `"js/ts.suggest.autoImports"` to `false`.
 
 > [!TIP]
-> VS Code tries to infer the best import style to use. You can explicitly configure the preferred quote style and path style for imports added to your code with the `setting(javascript.preferences.quoteStyle)` and `setting(javascript.preferences.importModuleSpecifier)` settings.
+> VS Code tries to infer the best import style to use. You can explicitly configure the preferred quote style and path style for imports added to your code with the `setting(js/ts.preferences.quoteStyle)` and `setting(js/ts.preferences.importModuleSpecifier)` settings.
 
 ### Add imports on paste
 
@@ -121,7 +117,7 @@ When you copy and paste code between editors, VS Code can automatically add impo
 
 <video src="images/javascript/jsts-update-imports-paste.mp4" title="Copy code from one editor to another shows the paste widget and results in adding imports when pasting. " autoplay loop controls muted></video>
 
-This feature is enabled by default, but you can disable it by toggling the `setting(javascript.updateImportsOnPaste.enabled)` setting.
+This feature is enabled by default, but you can disable it by toggling the `setting(js/ts.updateImportsOnPaste.enabled)` setting.
 
 You can make paste with imports the default behavior, without showing the paste control, by configuring the `setting(editor.pasteAs.preferences)` setting. Include `text.updateImports.jsts` or `text.updateImports` to always add imports when pasting.
 
@@ -152,7 +148,7 @@ When you move or rename a file that is imported by other files in your JavaScrip
     Sorry, your browser doesn't support HTML 5 video.
 </video>
 
-The `setting(javascript.updateImportsOnFileMove.enabled)` setting controls this behavior. Valid settings values are:
+The `setting(js/ts.updateImportsOnFileMove.enabled)` setting controls this behavior. Valid settings values are:
 
 * `"prompt"` - The default. Asks if paths should be updated for each file move.
 * `"always"` - Always automatically update paths.
@@ -162,7 +158,7 @@ The `setting(javascript.updateImportsOnFileMove.enabled)` setting controls this 
 
 VS Code's built-in JavaScript formatter provides basic code formatting with reasonable defaults.
 
-The `javascript.format.*` [settings](/docs/configure/settings.md) configure the built-in formatter. Or, if the built-in formatter is getting in the way, set `"javascript.format.enable"` to `false` to disable it.
+The `js/ts.format.*` [settings](/docs/configure/settings.md) configure the built-in formatter. Or, if the built-in formatter is getting in the way, set `"js/ts.format.enable"` to `false` to disable it.
 
 For more specialized code formatting styles, try installing one of the JavaScript formatting extensions from the [Marketplace](https://marketplace.visualstudio.com/vscode).
 
@@ -180,7 +176,7 @@ VS Code also includes JSX-specific features such as autoclosing of JSX tags:
     Sorry, your browser doesn't support HTML 5 video.
 </video>
 
-Set `"javascript.autoClosingTags"` to `false` to disable JSX tag closing.
+Set `"js/ts.autoClosingTags"` to `false` to disable JSX tag closing.
 
 ## Code navigation
 
@@ -253,6 +249,7 @@ The `setting(editor.codeActionsOnSave)` setting lets you configure a set of Code
 ```
 
 As of today, the following enums are supported:
+
 * `explicit` (default): Triggers Code Actions when explicitly saved. Same as `true`.
 * `always`: Triggers Code Actions when explicitly saved and on Auto Saves from window or focus changes.
 * `never`: Never triggers Code Actions on save. Same as `false`.
@@ -276,19 +273,11 @@ VS Code automatically suggests some common code simplifications such as converti
     Sorry, your browser doesn't support HTML 5 video.
 </video>
 
-Set `"javascript.suggestionActions.enabled"` to `false` to disable suggestions.
+Set `"js/ts.suggestionActions.enabled"` to `false` to disable suggestions.
 
 ## Enhance completions with AI
 
-[GitHub Copilot](https://copilot.github.com/) is an AI-powered code completion tool that helps you write code faster and smarter. You can use the [GitHub Copilot extension](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) in VS Code to generate code, or to learn from the code it generates.
-
-[![GitHub Copilot extension in the VS Code Marketplace](images/javascript/copilot-extension.png)](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-
-GitHub Copilot provides suggestions for numerous languages and a wide variety of frameworks, and it works especially well for Python, JavaScript, TypeScript, Ruby, Go, C# and C++.
-
-You can learn more about how to get started with Copilot in the [Copilot documentation](/docs/editor/github-copilot.md).
-
-Once you have the Copilot extension installed and enabled, you can test it out for your JavaScript projects.
+GitHub Copilot can give you AI-powered inline suggestions that help you write code faster and smarter. GitHub Copilot provides suggestions for numerous languages and a wide variety of frameworks, and it works especially well for Python, JavaScript, TypeScript, Ruby, Go, C# and C++.Learn more about how to [get started with Copilot in VS Code](/docs/agents/agents-tutorial.md).
 
 Create a new file - you can use the **File: New File** command in the Command Palette (`kbstyle(F1)`).
 
@@ -312,7 +301,7 @@ Inlay hints add additional inline information to source code to help you underst
 
 This can help you understand the meaning of each argument at a glance, which is especially helpful for functions that take Boolean flags or have parameters that are easy to mix up.
 
-To enable parameter name hints, set `javascript.inlayHints.parameterNames`. There are three possible values:
+To enable parameter name hints, set `js/ts.inlayHints.parameterNames`. There are three possible values:
 
 * `none` — Disable parameter inlay hints.
 * `literals` — Only show inlay hints for literals (string, number, Boolean).
@@ -320,25 +309,25 @@ To enable parameter name hints, set `javascript.inlayHints.parameterNames`. Ther
 
 **Variable type inlay hints** show the types of variables that don't have explicit type annotations.
 
-Setting: `setting(javascript.inlayHints.variableTypes.enabled)`
+Setting: `setting(js/ts.inlayHints.variableTypes.enabled)`
 
 ![Variable type inlay hints](images/javascript/inlay-var-types.png)
 
 **Property type inlay hints** show the type of class properties that don't have an explicit type annotation.
 
-Setting: `setting(javascript.inlayHints.propertyDeclarationTypes.enabled)`
+Setting: `setting(js/ts.inlayHints.propertyDeclarationTypes.enabled)`
 
 ![Property type inlay hints](images/javascript/inlay-property-types.png)
 
 **Parameter type hints**  show the types of implicitly typed parameters.
 
-Setting: `setting(javascript.inlayHints.parameterTypes.enabled)`
+Setting: `setting(js/ts.inlayHints.parameterTypes.enabled)`
 
 ![Parameter type inlay hints](images/javascript/inlay-parameter-types.png)
 
 **Return type inlay hints** show the return types of functions that don't have an explicit type annotation.
 
-Setting: `setting(javascript.inlayHints.functionLikeReturnTypes.enabled)`
+Setting: `setting(js/ts.inlayHints.functionLikeReturnTypes.enabled)`
 
 ![Return type inlay hints](images/javascript/inlay-return-type.png)
 
@@ -348,7 +337,7 @@ The JavaScript references CodeLens displays an inline count of reference for cla
 
 ![JavaScript references CodeLens](images/javascript/references-codelens.png)
 
-To enable the references CodeLens, set `"javascript.referencesCodeLens.enabled"` to `true`.
+To enable the references CodeLens, set `"js/ts.referencesCodeLens.enabled"` to `true`.
 
 Click on the reference count to quickly browse a list of references:
 
@@ -407,19 +396,26 @@ Read on to find out about:
 * [Node.js](/docs/nodejs/nodejs-tutorial.md) - A walkthrough to create an Express Node.js application.
 * [TypeScript](/docs/languages/typescript.md) - VS Code has great support for TypeScript, which brings structure and strong typing to your JavaScript code.
 
-## Common questions
+## Frequently asked questions
 
-### Does VS Code support JSX and React Native?
+<details>
+<summary>Does VS Code support JSX and React Native?</summary>
 
 VS Code supports **JSX** and **React Native**. You will get IntelliSense for **React/JSX** and **React Native** from automatically downloaded type declaration (typings) files from the [npmjs](https://www.npmjs.com) type declaration file repository. Additionally, you can install the popular [React Native extension](https://marketplace.visualstudio.com/items?itemName=vsmobile.vscode-react-native) from  the Marketplace.
 
 To enable ES6 import statements for **React Native**, you need to set the `allowSyntheticDefaultImports` compiler option to `true`. This tells the compiler to create synthetic default members and you get IntelliSense. **React Native** uses **Babel** behind the scenes to create the proper run-time code with default members. If you also want to do debugging of **React Native** code, you can install the [React Native Extension](https://marketplace.visualstudio.com/items?itemName=vsmobile.vscode-react-native).
 
-### Does VS Code support the Dart programming language and the Flutter framework?
+</details>
+
+<details>
+<summary>Does VS Code support the Dart programming language and the Flutter framework?</summary>
 
 Yes, there are VS Code extensions for both [Dart](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code) and [Flutter](https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter) development. You can learn more at the [Flutter.dev](https://flutter.dev/docs/development/tools/vs-code) documentation.
 
-### IntelliSense is not working for external libraries
+</details>
+
+<details>
+<summary>IntelliSense is not working for external libraries</summary>
 
 `Automatic Type Acquisition` works for dependencies downloaded by npm (specified in `package.json`), Bower (specified in `bower.json`), and for many of the most common libraries listed in your folder structure (for example `jquery-3.1.1.min.js`).
 
@@ -442,16 +438,27 @@ When you want to use ES6 style imports but some type declaration (typings) files
 }
 ```
 
-### Can I debug minified/uglified JavaScript?
+</details>
+
+<details>
+<summary>Can I debug minified/uglified JavaScript?</summary>
 
 Yes, you can. You can see this working using JavaScript source maps in the [Node.js Debugging](/docs/nodejs/nodejs-debugging.md) topic.
 
-### How do I disable Syntax Validation when using non-ES6 constructs?
+</details>
 
-Some users want to use syntax constructs like the proposed pipeline (`|>`) operator. However, these are currently not supported by VS Code's JavaScript language service and are flagged as errors. For users who still want to use these future features, we provide the `setting(javascript.validate.enable)` [setting](/docs/configure/settings.md).
+<details>
+<summary>How do I disable Syntax Validation when using non-ES6 constructs?</summary>
 
-With `javascript.validate.enable: false`, you disable all built-in syntax checking. If you do this, we recommend that you use a linter like [ESLint](https://eslint.org) to validate your source code.
+Some users want to use syntax constructs like the proposed pipeline (`|>`) operator. However, these are currently not supported by VS Code's JavaScript language service and are flagged as errors. For users who still want to use these future features, we provide the `setting(js/ts.validate.enable)` [setting](/docs/configure/settings.md).
 
-### Can I use other JavaScript tools like Flow?
+With `js/ts.validate.enable: false`, you disable all built-in syntax checking. If you do this, we recommend that you use a linter like [ESLint](https://eslint.org) to validate your source code.
+
+</details>
+
+<details>
+<summary>Can I use other JavaScript tools like Flow?</summary>
 
 Yes, but some of [Flow's](https://flow.org) language features such as type and error checking may interfere with VS Code's built-in JavaScript support. To learn how to disable VS Code's built-in JavaScript support, see [Disable JavaScript support](/docs/nodejs/working-with-javascript.md#disable-javascript-support).
+
+</details>

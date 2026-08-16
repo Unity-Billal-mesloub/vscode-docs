@@ -1,6 +1,6 @@
 ---
 ContentId: 435486d3-ad55-4a31-a087-d108f75ba669
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Uninstall Visual Studio Code and clean up.
 ---
 # Uninstall Visual Studio Code
@@ -51,17 +51,17 @@ where `code` is the name of the VS Code Debian package.
 
 ## Clean uninstall
 
-If you want to remove all user data after uninstalling VS Code, you can delete the user data folders `Code` and `.vscode`. This will return you to the state before you installed VS Code. This can also be used to reset all settings if you don't want to uninstall VS Code.
+If you want to remove all user data after uninstalling VS Code, you can delete the user data folders `Code`, `.vscode-shared`, and `.vscode`. This will return you to the state before you installed VS Code. This can also be used to reset all settings if you don't want to uninstall VS Code.
 
 The folder locations will vary depending on your platform:
 
-* **Windows** - Delete `%APPDATA%\Code` and `%USERPROFILE%\.vscode`.
-* **macOS** - Delete `$HOME/Library/Application Support/Code` and `~/.vscode`.
-* **Linux** - Delete `$HOME/.config/Code` and `~/.vscode`.
+* **Windows** - Delete `%APPDATA%\Code`, `%USERPROFILE%.vscode-shared`, and `%USERPROFILE%\.vscode`.
+* **macOS** - Delete `$HOME/Library/Application Support/Code`, `~/.vscode-shared`, and `~/.vscode`.
+* **Linux** - Delete `$HOME/.config/Code`, `~/.vscode-shared`, and `~/.vscode`.
 
 ## Next steps
 
-* [Setup overview](/docs/setup/setup-overview.md) - General information about VS Code setup and updates.
+* [Setup overview](/docs/getstarted/overview.md) - General information about VS Code setup and updates.
 * [Windows setup](/docs/setup/windows.md) - Details and common questions about installing VS Code on Windows.
 * [macOS setup](/docs/setup/mac.md) - VS Code is available for both Intel and Apple silicon macOS machines.
 * [Linux setup](/docs/setup/linux.md) - Learn about the different VS Code packages available for Linux.

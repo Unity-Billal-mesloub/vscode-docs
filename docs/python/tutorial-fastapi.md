@@ -1,6 +1,6 @@
 ---
 ContentId: 0d32bced-91aa-5c2e-e569-6fc7995370ae
-DateApproved: 12/10/2025
+DateApproved: 02/04/2026
 MetaDescription: Python FastAPI tutorial showing IntelliSense and debugging support in Visual Studio Code, the best Python IDE.
 ---
 # FastAPI Tutorial in Visual Studio Code
@@ -190,7 +190,7 @@ Now we need a place to store the grocery list items. For simplicity, let's start
 3. Add the following route at the end of the `main.py` file:
 
     ```python
-    # Route to add a item
+    # Route to add an item
     @app.post("/items/{item_name}/{quantity}")
     def add_item(item_name: str, quantity: int):
         if quantity <= 0:

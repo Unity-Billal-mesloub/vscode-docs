@@ -11,7 +11,7 @@ If you run into any issues when using the features below, you can contact us by 
 
 ## Code navigation
 
-With the [Outline view](/docs/getstarted/userinterface.md#outline-view), you can conveniently navigate the members within the current file. [Projects view](/docs/java/java-project.md#projects-view) also provide a great overview of your project. As a Java editor, it also supports Call Hierarchy, Type Hierarchy, Definition Navigation, Search Types in Workspace, etc.
+With the [Outline view](/docs/editing/userinterface.md#outline-view), you can conveniently navigate the members within the current file. [Projects view](/docs/java/java-project.md#projects-view) also provide a great overview of your project. As a Java editor, it also supports Call Hierarchy, Type Hierarchy, Definition Navigation, Search Types in Workspace, etc.
 
 ## Search for symbols
 
@@ -78,7 +78,7 @@ Folding regions allows you to fold or unfold code snippet to better view the sou
 
 ## Smart Selection
 
-With [Smart Selection](https://code.visualstudio.com/updates/v1_33#_smart-select-api) (semantic selection), you can expand or shrink the selection range based on the semantic information of the caret position in your source code.
+With [Smart Selection](/updates/v1_33.md#smart-select-api) (semantic selection), you can expand or shrink the selection range based on the semantic information of the caret position in your source code.
 
 * To expand the selection, use `kb(editor.action.smartSelect.expand)`.
 * To shrink the selection, use `kb(editor.action.smartSelect.shrink)`.
@@ -189,7 +189,7 @@ The complete list of shortcuts is listed below:
 | for | for (T item : expr) | Creates a for statement |
 | fori | for (int i = 0; i < expr.length; i++) | Creates a for statement which iterates over an array |
 | forr | for (int i = expr.length-1; i >= 0; i--) | Creates a for statement which iterates over an array in reverse order |
-| if | if (expr) | Creates a if statement |
+| if | if (expr) | Creates an if statement |
 | nnull | if (expr != null) | Creates an if statement and checks if the expression does not resolve to null |
 | null | if (expr == null) | Creates an if statement which checks if expression resolves to null |
 | sysout | System.out.println(expr) | Sends the affected string to a System.out.println(..) call |

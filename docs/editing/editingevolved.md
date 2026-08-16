@@ -1,6 +1,6 @@
 ---
 ContentId: 8966BBFD-C66D-4283-9DCA-8CAC0179886E
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Visual Studio Code is a first class editor - but it's also so much more with features such as IntelliSense and smart code navigation.
 ---
 # Code Navigation
@@ -50,6 +50,12 @@ Allowed values are:
 * `position` - position in the file (default)
 * `name` - alphabetical order
 * `type` - symbol type order
+
+### Breadcrumb path copying
+
+You can copy the full breadcrumb path by right-clicking on the editor tab and selecting **Copy Breadcrumbs Path**. This will copy the full path including file and symbol names to the clipboard.
+
+You can configure the symbol path separator with the `setting(breadcrumbs.symbolPathSeparator)` setting. The default value is `.`.
 
 ### Breadcrumb keyboard navigation
 
@@ -192,7 +198,7 @@ The **Trusted Domains** JSON file also has comments with examples of the support
 Now that you know how the editor works, time to try a few other things...
 
 * [Intro Video - Code Editing](/docs/introvideos/codeediting.md) - Watch an introductory video on code editing features.
-* [User Interface](/docs/getstarted/userinterface.md) - In case you missed a basic orientation around VS Code.
+* [User Interface](/docs/editing/userinterface.md) - In case you missed a basic orientation around VS Code.
 * [Key Bindings](/docs/configure/keybindings.md) - Learn how to modify keyboard shortcuts to your preference.
 * [Debugging](/docs/debugtest/debugging.md) - This is where VS Code really shines.
 

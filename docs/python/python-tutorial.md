@@ -1,6 +1,6 @@
 ---
 ContentId: 77828f36-ae45-4887-b25c-34545edd52d3
-DateApproved: 12/10/2025
+DateApproved: 02/04/2026
 MetaDescription: A Python hello world tutorial using the Python extension in Visual Studio Code
 MetaSocialImage: images/tutorial/python-social.png
 ---
@@ -21,6 +21,18 @@ To successfully complete this tutorial, you need to first set up your Python dev
 - [Python 3](/docs/python/python-tutorial.md#install-a-python-interpreter)
 - [VS Code](https://code.visualstudio.com/)
 - [VS Code Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) (For additional details on installing extensions, see [Extension Marketplace](/docs/configure/extensions/extension-marketplace.md))
+
+## Understand the Python setup
+
+If you're new to programming tools, it helps to know that three separate pieces work together to run Python in VS Code:
+
+* **VS Code**: the editor where you write and organize your code.
+
+* **Python extension**: adds Python language support to VS Code, such as IntelliSense, running, and debugging. The extension doesn't include Python itself.
+
+* **Python interpreter**: the program that actually runs your Python code. You install it separately from VS Code.
+
+You install all three in this tutorial. VS Code is the workspace, the Python extension connects VS Code to Python, and the interpreter does the work of running your script.
 
 ## Install a Python interpreter
 
@@ -62,6 +74,9 @@ The built-in Python 3 installation on Linux works well, but to install other Pyt
 >```
 >If the installation was successful, the output window should show the version of Python that you installed.
 >Alternatively, you can use the `py -0` command in the VS Code integrated terminal to view the versions of python installed on your machine. The default interpreter is identified by an asterisk (*).
+
+> [!NOTE]
+> You run these commands in a terminal, also called a shell, which is the panel that lets you type and run commands. If you install Python while VS Code or a terminal is already open, close and reopen the terminal (or restart VS Code) so it detects the newly installed interpreter. A terminal reads your system configuration when it starts, so a fresh terminal is needed to find Python on your `PATH`.
 
 ## Start VS Code in a workspace folder
 
@@ -235,11 +250,19 @@ Next, run the file in the debugger using the "Python: Current file" configuratio
 
 You should see the message, **"ModuleNotFoundError: No module named 'numpy'"**. This message indicates that the required package isn't available in your interpreter. If you're using an Anaconda distribution or have previously installed the `numpy` package you may not see this message.
 
-To install the `numpy` package, stop the debugger and use the Command Palette to run **Terminal: Create New Terminal** (`kb(workbench.action.terminal.new)`). This command opens a command prompt for your selected interpreter.
+To install the `numpy` package, stop the debugger and use one of the following methods:
+
+**Option 1: Use the Package Management UI**
+
+1. Open the **Python** sidebar and expand **Environment Managers**
+2. Right-click on your environment and select **Manage Packages**
+3. Search for `numpy` and select **Install**
+
+**Option 2: Use the terminal**
+
+Run **Terminal: Create New Terminal** (`kb(workbench.action.terminal.new)`) from the Command Palette. This command opens a command prompt for your selected interpreter.
 
 To install the required packages in your virtual environment, enter the following commands as appropriate for your operating system:
-
-1. Install the packages
 
    ```bash
    # Don't use with Anaconda distributions because they include matplotlib already.
@@ -255,10 +278,14 @@ To install the required packages in your virtual environment, enter the followin
    python3 -m pip install numpy
    ```
 
-1. Now, rerun the program, with or without the debugger, to view the output!
+Now, rerun the program, with or without the debugger, to view the output!
 
 ### Managing dependencies across environments
-When working on Python projects, it’s essential to manage your dependencies effectively. One useful tip is to use the `pip freeze > requirements.txt` command. This command helps you create a `requirements.txt` file that lists all the packages installed in your virtual environment. This file can then be used to recreate the same environment elsewhere.
+
+When working on Python projects, it's essential to manage your dependencies effectively. One useful tip is to use the `pip freeze > requirements.txt` command. This command helps you create a `requirements.txt` file that lists all the packages installed in your virtual environment. This file can then be used to recreate the same environment elsewhere.
+
+> [!TIP]
+> When you create a new environment using **Python: Create Environment** or the **+** button in the Environment Managers view, the extension automatically detects and installs dependencies from `requirements.txt` or `pyproject.toml` if present in your workspace.
 
 Follow these steps to create a `requirements.txt` file:
 1. Activate your virtual environment, if you haven’t already.

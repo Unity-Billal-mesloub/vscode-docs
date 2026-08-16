@@ -1,6 +1,6 @@
 ---
 ContentId: c7134463-4fdd-4674-8685-77c94472902c
-DateApproved: 12/10/2025
+DateApproved: 02/04/2026
 MetaDescription: A quick start guide to get you up and coding with the Python extension in Visual Studio Code.
 MetaSocialImage: images/tutorial/python-social.png
 ---
@@ -11,8 +11,11 @@ The Python extension makes Visual Studio Code an excellent Python editor, works 
 Get started by installing:
 
 - [VS Code](https://code.visualstudio.com/)
-- [A Python Interpreter](/docs/python/python-tutorial.md#_install-a-python-interpreter) (any [actively supported Python version](https://devguide.python.org/versions/))
+- [A Python Interpreter](/docs/python/python-tutorial.md#install-a-python-interpreter) (any [actively supported Python version](https://devguide.python.org/versions/))
 - [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) from the VS Code Marketplace
+
+> [!TIP]
+> These are three separate pieces that work together: VS Code is the editor, the Python extension adds Python support to VS Code, and the Python interpreter runs your code. For a plain-language explanation, see [Understand the Python setup](/docs/python/python-tutorial.md#understand-the-python-setup).
 
 ![Gif installing the Python extension in a fresh install of VS Code](images/quick-start/qs-python-ext-install.gif)
 
@@ -42,7 +45,7 @@ Code Actions (also known as Quick Fixes) are provided to help fix issues when th
 
 ## Python commands
 
-Python commands can be accessed through the [Command Palette](/docs/getstarted/userinterface.md#command-palette) (`kb(workbench.action.showCommands)`). From the Command Palette, you have access to various features from VS Code and installed extensions. Enter **“Python: “** in the Command Palette to find the commands available through the Python extension.
+Python commands can be accessed through the [Command Palette](/docs/editing/userinterface.md#command-palette) (`kb(workbench.action.showCommands)`). From the Command Palette, you have access to various features from VS Code and installed extensions. Enter **“Python: “** in the Command Palette to find the commands available through the Python extension.
 
 ![Gif demonstrating how to access Python commands in the Command Palette.](images/quick-start/cmd-plt-v2.gif)
 

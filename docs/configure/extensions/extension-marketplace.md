@@ -1,6 +1,6 @@
 ---
 ContentId: 319916C4-93F2-471F-B448-FD416736C40C
-DateApproved: 12/10/2025
+DateApproved: 02/04/2026
 MetaDescription: Discover, add, update, disable and uninstall Visual Studio Code extensions (plug-ins) through the Extension Marketplace.
 ---
 # Extension Marketplace
@@ -152,13 +152,20 @@ There is also an **Enable All Extensions** command in the **More Actions** (`...
 
 VS Code checks for extension updates and installs them automatically. After an update, you are prompted to restart the extension host (**Restart Extensions**).
 
-If you'd rather update your extensions manually, you can disable auto-update with the **Disable Auto Update for All Extensions** command or the corresponding action in the Extensions view. You can also configure the `setting(extensions.autoUpdate)` [setting](/docs/configure/settings.md). Use the **Enable Auto Update for All Extensions** command to re-enable auto update.
+If you'd rather update your extensions manually, you can disable auto-update with the **Disable Auto Update for Extensions** command or the corresponding action in the Extensions view. You can also configure the `setting(extensions.autoUpdate)` setting. Use the **Enable Auto Update for Extensions** command to re-enable auto update.
 
-![Disable auto update for all extensions action](images/extension-marketplace/disable-auto-update-all-extensions.png)
+When auto-update is enabled, VS Code updates only enabled extensions. Disabled extensions are not updated automatically and update the next time you enable them.
+
+![Screenshot of the Extensions context menu with the Disable Auto Update for Extensions action.](images/extension-marketplace/disable-auto-update-all-extensions-v2.png)
 
 You can also configure auto update for individual extensions by right-clicking on an extension and toggling the **Auto Update** item.
 
+By default, VS Code waits a short time after an update is published before it installs the update automatically. Use the `setting(extensions.autoUpdateDelay)` setting to configure the delay, in hours. The default value is `2` hours. Set the value to `0` to install updates as soon as they are published. This delay only applies when auto-update is `on`. To update an extension immediately, select the **Update** button for the extension, which bypasses the delay.
+
 If you don't want VS Code to even check for updates, you can set the `setting(extensions.autoCheckUpdates)` setting to false.
+
+> [!NOTE]
+> Administrators can centrally manage the `setting(extensions.autoUpdate)` and `setting(extensions.autoUpdateDelay)` settings with [enterprise policies](/docs/enterprise/policies.md).
 
 ### Update an extension manually
 
@@ -366,7 +373,7 @@ Get more information about [extension runtime security](/docs/configure/extensio
 
 ### Can I host extensions internally for my organization?
 
-Yes, see the [Private Marketplace for Extensions](https://code.visualstudio.com/docs/setup/enterprise#_private-marketplace-for-extensions).
+Yes, see the [Private Marketplace for Extensions](/docs/enterprise/extensions.md#host-a-private-extension-marketplace).
 
 ### The extension signature cannot be verified by VS Code
 
@@ -407,4 +414,4 @@ VS Code does not synchronize your extensions to or from a [remote](/docs/remote/
 
 You can control which extensions can be installed in your organization by configuring the `extensions.allowed` application setting. If the setting is not configured, all extensions are allowed. If the setting is configured, all extensions not listed are blocked from installing.
 
-Get more details about [configuring allowed extensions](/docs/setup/enterprise.md#configure-allowed-extensions).
+Get more details about [configuring allowed extensions](/docs/enterprise/extensions.md#configure-allowed-extensions).

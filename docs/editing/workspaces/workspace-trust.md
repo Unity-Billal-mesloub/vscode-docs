@@ -1,6 +1,6 @@
 ---
 ContentId: 51280c26-f78b-4f9c-997f-8350bd6ed07f
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: Visual Studio Code Workspace Trust folder security
 ---
 # Workspace Trust
@@ -17,23 +17,41 @@ It's great that there is so much source code available on public repositories an
 
 Workspace Trust provides an extra layer of security when working with unfamiliar code, by preventing automatic code execution of any code in your workspace if the workspace is open in "Restricted Mode".
 
-> **Note**: The terms "workspace" and "folder" are used widely in the VS Code UI and documentation. You can think of a ["workspace"](/docs/editing/workspaces/workspaces.md) as a folder with extra metadata created and used by VS Code.
+> [!IMPORTANT]
+> Workspace trust is shared between your VS Code window and the [Agents window](/docs/agents/run/agents-window.md). If the workspace is untrusted in VS Code, it is also untrusted in the Agents window, and agents will not run in either place. You can manage workspace trust from either surface, and the trust state is shared across both.
 
 ## Restricted Mode
 
-When prompted by the Workspace Trust dialog, if you choose **No, I don't trust the authors**, VS Code goes into Restricted Mode to prevent code execution.
+When you open a new, unfamiliar folder, VS Code opens it in Restricted Mode to prevent automatic code execution while you review the contents. VS Code also enters Restricted Mode if you choose **No, I don't trust the authors** when prompted by the Workspace Trust dialog.
 
-The workbench displays a banner at the top with a link to **Manage** your folder via the Workspace Trust editor. In the Status Bar, you can also see a badge that indicates that the workspace is in Restricted Mode.
+The workbench displays a banner at the top with a link to **Manage** your folder via the Workspace Trust editor. In the Status Bar, you can also see a badge that indicates that the workspace is in Restricted Mode. When you're ready, you can trust the folder from the banner or the Workspace Trust editor.
 
 ![Workspace Trust Restricted Mode banner](images/workspace-trust/restricted-mode-banner.png)
 
-Restricted Mode tries to prevent automatic code execution by disabling or limiting the operation of several VS Code features: tasks, debugging, workspace settings, and extensions.
+Restricted Mode tries to prevent automatic code execution by disabling or limiting the operation of several VS Code features: AI agents, terminal, tasks, debugging, workspace settings, and extensions.
 
-To see the full list of features disabled in Restricted Mode, you can open the Workspace Trust editor via the **Manage** link in the banner, or by selecting the Restricted Mode badge in the Status Bar.
+To see the full list of features disabled in Restricted Mode, you can open the Workspace Trust editor via the **Manage** link in the banner, or by selecting the Restricted Mode badge in the Status Bar. The Workspace Trust editor opens by default in a [modal overlay](/docs/editing/userinterface.md#modal-editors) on top of the editor area.
 
 ![Workspace Trust editor](images/workspace-trust/workspace-trust-editor.png)
 
-> **Important**: Workspace Trust can't prevent a malicious extension from executing code and ignoring **Restricted Mode**. You should only install and run extensions that come from a well-known publisher that you trust.
+> [!CAUTION]
+> Workspace Trust can't prevent a malicious extension from executing code and ignoring **Restricted Mode**. You should only install and run extensions that come from a well-known publisher that you trust.
+
+### AI agents
+
+When you use AI-powered development features like agents in VS Code, these agents perform actions on your behalf, including making changes to your codebase, running terminal commands, or invoking web requests. Any file could be pulled into the context by using agents and could theoretically result in a prompt injection attack.
+
+Until you've reviewed a project for malicious content, rely on the Workspace Trust boundary and open it in restricted mode. Opening a workspace in restricted mode disables agents in that workspace.
+
+Learn more about [AI security considerations](/docs/agents/run/security.md) when using AI-powered development features in VS Code.
+
+### Terminal
+
+Shells can automatically execute code based on workspace contents, for example by sourcing `.env` files or running shell initialization scripts that reference the current directory. To protect against this, opening a [terminal](/docs/terminal/basics.md) is blocked by default when a folder is open in Restricted Mode.
+
+If you try to open a terminal while in Restricted Mode, VS Code displays a prompt to confirm that you trust the folder. If you cancel the dialog, VS Code stays in Restricted Mode, and does not open the terminal.
+
+If you configure your shell to prevent automatic code execution based on workspace contents, you can enable the `setting(terminal.integrated.allowInUntrustedWorkspace)` setting to allow terminals to open in Restricted Mode without a trust prompt.
 
 ### Tasks
 
@@ -93,19 +111,20 @@ If you try to install an extension in Restricted Mode, you are prompted to eithe
 
 ![Workspace Trust install an extension in Restricted Mode dialog](images/workspace-trust/workspace-trust-install-extension.png)
 
-> **Note**: Extension authors can learn how to update their extensions to support Workspace Trust by reading the [Workspace Trust Extension Guide](/api/extension-guides/workspace-trust.md).
+> [!NOTE]
+> Extension authors can learn how to update their extensions to support Workspace Trust by reading the [Workspace Trust Extension Guide](/api/extension-guides/workspace-trust.md).
 
 ## Trusting a workspace
 
 If you trust the authors and maintainers of a project, you can trust the project's folder on your local machine. For example, it is usually safe to trust repositories from well-known GitHub organizations such as github.com/microsoft or github.com/docker.
 
-When you open a new folder, the initial Workspace Trust prompt enables you to trust that folder and its subfolders.
+When you open a new folder, it opens in [Restricted Mode](#restricted-mode) with a trust banner. Use the banner or the Workspace Trust editor to trust the folder and its subfolders when you're ready.
 
-![Trust this folder dialog](images/workspace-trust/workspace-trust-dialog.png)
+![Workspace Trust Restricted Mode banner](images/workspace-trust/restricted-mode-banner.png)
 
-You can also bring up the Workspace Editor and quickly toggle a folder's trusted state by selecting the **Trust** or **Trust Parent** button.
+You can also bring up the Workspace Trust editor and quickly toggle a folder's trusted state by selecting the **Trust** button.
 
-![Workspace Trust editor Trust buttons](images/workspace-trust/workspace-trust-buttons.png)
+![Workspace Trust editor Trust button](images/workspace-trust/workspace-trust-buttons-v2.png)
 
 There are several ways to bring up the Workspace Trust editor dialog.
 
@@ -118,6 +137,9 @@ You can also at any time use:
 
 * **Workspaces: Manage Workspace Trust** command from the Command Palette (`kb(workbench.action.showCommands)`)
 
+> [!IMPORTANT]
+> Workspace trust is shared between your VS Code window and the [Agents window](/docs/agents/run/agents-window.md). If the workspace is untrusted in VS Code, it is also untrusted in the Agents window, and agents will not run in either place. You can manage workspace trust from either surface, and the trust state is shared across both.
+
 ## Selecting folders
 
 When you trust a folder, it is added to the **Trusted Folders & Workspaces** list that is displayed in the Workspace Trust editor.
@@ -128,15 +150,11 @@ You can manually add, edit, and remove folders from this list to enable or disab
 
 ### Selecting a parent folder
 
-When you trust a folder via the Workspace Trust editor, you have the option to also trust the parent folder. This applies trust to the parent folder and all its subfolders.
-
-![Workspace Trust editor showing the Trust Parent button](images/workspace-trust/trust-parent-folder.png)
+You can also trust a parent folder, which applies trust to the parent folder and all its subfolders. To trust a parent folder, add its path to the **Trusted Folders & Workspaces** list in the Workspace Trust editor.
 
 Trusting the parent folder can be helpful if you have many folders with trusted content co-located under one folder.
 
 When you open a subfolder under a trusted parent, you won't see the usual **Don't Trust** button to put you back in Restricted Mode. Instead, there is text mentioning that your folder is trusted due to another folder.
-
-You can add, modify, and remove a parent folder entry from the **Trusted Folders & Workspaces** list.
 
 ### Folder configurations
 
@@ -161,7 +179,8 @@ You can also group and set trust on your repositories by grouping them under org
 
 What happens if you want to use Restricted Mode but your favorite extension doesn't support Workspace Trust? This can happen if an extension, while useful and functional, isn't being actively maintained and hasn't declared their Workspace Trust support. To handle this scenario, you can override the extension's trust state with the `setting(extensions.supportUntrustedWorkspaces)` setting.
 
-> **Important**: Be careful with overriding an extension's Workspace Trust support. It's possible that the extension author has a good reason for disabling their extension in Restricted Mode. If in doubt, reach out to the extension author or review recent changelogs to get more context.
+> [!IMPORTANT]
+> Be careful with overriding an extension's Workspace Trust support. It's possible that the extension author has a good reason for disabling their extension in Restricted Mode. If in doubt, reach out to the extension author or review recent changelogs to get more context.
 
 In the Settings editor (`kb(workbench.action.openSettings)`), you can override the Workspace Trust for individual extensions via the **Extensions: Support Untrusted Workspaces** setting (`setting(extensions.supportUntrustedWorkspaces)`).
 
@@ -213,7 +232,7 @@ If you want all empty windows to be in Restricted Mode, you can set `setting(sec
 Below are the available Workspace Trust settings:
 
 * `setting(security.workspace.trust.enabled)` - Enable Workspace Trust feature. Default is true.
-* `setting(security.workspace.trust.startupPrompt)` - Whether to show the Workspace Trust dialog on startup. Default is to only show once per distinct folder or workspace.
+* `setting(security.workspace.trust.startupPrompt)` - Whether to show the Workspace Trust dialog on startup. Default is `never`, so new folders open in [Restricted Mode](#restricted-mode) with a trust banner instead of an upfront dialog. Set it to `once` to be prompted the first time you open a distinct folder or workspace.
 * `setting(security.workspace.trust.emptyWindow)` - Whether to always trust an empty window (no open folder). Default is true.
 * `setting(security.workspace.trust.untrustedFiles)` - Controls how to handle loose files in a workspace. Default is to prompt.
 * `setting(extensions.supportUntrustedWorkspaces)` - Override extension Workspace Trust declarations. Either true or false.

@@ -1,6 +1,6 @@
 ---
 ContentId: d44f1a5c-5454-4037-92d5-c2bf5d4cffed
-DateApproved: 12/10/2025
+DateApproved: 8/12/2026
 MetaDescription: One of the great things in Visual Studio Code is testing support. Automatically discover tests in your project, run and debug your tests, and get test coverage results.
 ---
 # Testing
@@ -10,7 +10,7 @@ Visual Studio Code provides a rich set of features for testing your code. You ca
 In this article, you'll learn how to start with testing in VS Code, find popular testing extensions, and explore the testing features. You'll also learn how Copilot in VS Code can help you write tests faster and can assist you in fixing failing tests.
 
 > [!TIP]
-> If you don't have a Copilot subscription yet, use Copilot for free by signing up for the [Copilot Free plan](https://github.com/github-copilot/signup). You'll get a monthly limit of inline suggestions and chat interactions.
+> If you don't have a Copilot subscription yet, use Copilot for free by signing up for the [Copilot Free plan](https://github.com/github-copilot/signup). You'll get a monthly allowance of inline suggestions and AI credits.
 
 <!-- ![Testing in Visual Studio Code](images/testing/testing-hero.png) -->
 
@@ -105,9 +105,9 @@ To write tests with Copilot in VS Code, you can use either of these methods:
 Copilot will generate test cases code for your application code. If you already have a tests file, Copilot will add the tests there, or create a new file, if needed. You can further customize the generated tests by providing more prompts to Copilot. For example, you can ask Copilot to use another testing framework.
 
 > [!TIP]
-> You can give Copilot your own [special instructions for generating code](/docs/copilot/customization/overview.md). For example, you can tell Copilot to use a certain testing framework, naming convention, or code structure.
+> You can give Copilot your own [special instructions for generating code](/docs/agent-customization/overview.md). For example, you can tell Copilot to use a certain testing framework, naming convention, or code structure.
 
-Learn more about [using Copilot in VS Code](/docs/copilot/overview.md).
+Learn more about [using Copilot in VS Code](/docs/agent-native/overview.md).
 
 ## Run and debug tests
 
@@ -171,6 +171,12 @@ After you run tests with coverage, you can view the coverage results in differen
 
     If you have a diff editor open, the coverage results are also shown in the diff editor, similar to how they're shown in the editor.
 
+* In the Test Coverage toolbar
+
+	The Test Coverage toolbar in the editor shows the test coverage results, lets you navigate between uncovered code blocks, and toggle inline coverage. Enable the Test Coverage toolbar with the `setting(testing.coverageToolbarEnabled)` setting.
+
+	![Test Coverage toolbar](images/testing/test-coverage-toolbar.png)
+
 ## Task integration
 
 Tasks in VS Code can be configured to run scripts and start processes within VS Code, without having to enter a command line or write new code. In VS Code, you can define a default test task that runs your tests, and optionally create keyboard shortcuts to run the tests.
@@ -224,6 +230,6 @@ You can find all testing-related settings in the Settings editor (`kb(workbench.
 
 * Get started with testing in [Python](/docs/python/testing.md), [Java](/docs/java/java-testing.md), or [C#](/docs/csharp/testing.md)
 
-* Learn more about [Copilot and AI-assisted testing in VS Code](/docs/copilot/overview.md)
+* Learn more about [Copilot and AI-assisted testing in VS Code](/docs/agent-native/overview.md)
 
 * Learn more about [using and configuring Tasks](/docs/debugtest/tasks.md)

@@ -1,6 +1,6 @@
 ---
 ContentId: 8688bb6d-793e-4a37-aed2-5af4cfe89940
-DateApproved: 02/20/2025
+DateApproved: 8/12/2026
 MetaDescription: Learn about using PowerShell in Visual Studio Code
 ---
 # PowerShell in Visual Studio Code
@@ -217,17 +217,17 @@ If you find a bug, [open an issue][22] and revert to the stable version while we
 
 <!-- link references -->
 [01]: /docs/debugtest/debugging
-[02]: /docs/editing/editingevolved#_go-to-definition
-[03]: /docs/editing/editingevolved#_open-symbol-by-name
-[04]: /docs/editing/editingevolved#_reference-information
-[05]: /docs/editing/intellisense
+[02]: /docs/editing/editingevolved.md#go-to-definition
+[03]: /docs/editing/editingevolved.md#open-symbol-by-name
+[04]: /docs/editing/editingevolved.md#reference-information
+[05]: /docs/editing/intellisense.md
 [06]: /docs/configure/settings
 [07]: /docs/configure/themes
-[08]: /docs/editing/userdefinedsnippets
-[09]: /docs/getstarted/tips-and-tricks#_errors-and-warnings
-[10]: /docs/getstarted/userinterface#_outline-view
+[08]: /docs/editing/userdefinedsnippets.md
+[09]: /docs/editing/tips-and-tricks.md#errors-and-warnings
+[10]: /docs/editing/userinterface.md#outline-view
 [11]: http://github.com/PowerShell/PSScriptAnalyzer
-[12]: https://code.visualstudio.com/docs/setup/vscode-web
+[12]: https://code.visualstudio.com/docs/remote/vscode-web
 [13]: https://code.visualstudio.com/docs/remote/remote-overview
 [14]: https://code.visualstudio.com/docs/remote/vscode-server
 [15]: https://devblogs.microsoft.com/scripting/debugging-powershell-script-in-visual-studio-code-part-1/
